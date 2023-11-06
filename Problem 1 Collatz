@@ -1,0 +1,28 @@
+def all_subsets(arr):
+    subsets = [[]]
+    for num in arr:
+        subsets += [curr + [num] for curr in subsets]
+    subsets.remove([])  # Remove the empty set
+    return subsets
+
+def find_subset_sums(arr, mod):
+    subsets = all_subsets(arr)
+    subset_sums = [sum(subset) % mod for subset in subsets]
+    return subset_sums
+
+def raise_to_power(numbers, n, mod):
+    powered_numbers = [num ** n % mod for num in numbers]
+    return powered_numbers
+
+def sum_of_powers(arr, n, mod):
+    subset_sums = find_subset_sums(arr, mod)
+    powered_sums = raise_to_power(subset_sums, n, mod)
+    total_sum = sum(powered_sums) % mod
+    return total_sum
+
+a, b = map(int, input().split())
+integers = list(map(int, input().split()))
+mod = 998244353
+
+total_sum = sum_of_powers(integers, b, mod)
+print(total_sum)
