@@ -1,0 +1,18 @@
+a, b = map(int, input().split())
+
+integers = list(map(int, input().split()))
+
+for _ in range(b):
+    new_integers = [] 
+
+    for number in integers:
+        if number % 2 == 0:
+            new_integers.append(int(number / 2))
+        else:
+            new_integers.append(int(3 * number + 1))
+
+    integers = new_integers 
+
+result = sum(integers)
+print(result)
+
